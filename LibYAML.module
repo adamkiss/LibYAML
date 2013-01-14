@@ -1,0 +1,40 @@
+<?php
+/**
+ * LibYAML
+ *
+ * YAML Parser from symphony packaged as PW Module
+ * 
+ * @author Adam Kiss
+ * @version 1.0.3
+ * @since 2013-01-12
+ * @license WTFPL <http://www.wtfpl.net/>
+ * 
+ * @link http://www.adamkiss.com
+ */
+
+class LibYAML extends WireData implements Module {
+
+  /**
+   * Z informationz
+   *
+   * @return array
+   */
+  public static function getModuleInfo() {
+    return array(
+      'title' => 'YAML',
+      'version' => 50, 
+      'summary' => 'YAML Parser',
+      'href' => 'http://adamkiss.com'
+    );
+  }
+
+  public function init(){
+    require 'yaml/Yaml.php';
+  }
+  public function ___install() {
+    if(ProcessWire::versionMajor == 2 && ProcessWire::versionMinor < 2) {
+      throw new WireException("This module requires ProcessWire 2.2 or newer"); 
+    }
+  }
+
+}
